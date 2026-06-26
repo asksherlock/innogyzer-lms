@@ -31,7 +31,7 @@
     "payload": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "sharp": "latest"
+    "sharp": "^0.35.2"
   },
   "devDependencies": {
     "@types/node": "latest",
