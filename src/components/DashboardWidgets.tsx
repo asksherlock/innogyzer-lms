@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 export const DashboardWidgets = () => {
   const [stats, setStats] = useState({
     posts: 0,
-    services: 0,
+    testimonials: 0,
     users: 0,
     loading: true
   });
@@ -13,19 +13,19 @@ export const DashboardWidgets = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const [postsRes, servicesRes, usersRes] = await Promise.all([
+        const [postsRes, testimonialsRes, usersRes] = await Promise.all([
           fetch('/api/posts?limit=1'),
-          fetch('/api/services?limit=1'),
+          fetch('/api/testimonials?limit=1'),
           fetch('/api/users?limit=1')
         ]);
         
         const postsData = await postsRes.json();
-        const servicesData = await servicesRes.json();
+        const testimonialsData = await testimonialsRes.json();
         const usersData = await usersRes.json();
 
         setStats({
           posts: postsData.totalDocs || 0,
-          services: servicesData.totalDocs || 0,
+          testimonials: testimonialsData.totalDocs || 0,
           users: usersData.totalDocs || 0,
           loading: false
         });
@@ -63,9 +63,9 @@ export const DashboardWidgets = () => {
           borderRadius: '8px',
           borderTop: '3px solid #dcea22'
         }}>
-          <h3 style={{ color: '#a3a3a3', fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Servicios</h3>
+          <h3 style={{ color: '#a3a3a3', fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Testimonios</h3>
           <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#fff', marginTop: '0.5rem' }}>
-            {stats.loading ? '...' : stats.services}
+            {stats.loading ? '...' : stats.testimonials}
           </p>
         </div>
 
