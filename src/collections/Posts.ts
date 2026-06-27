@@ -7,7 +7,10 @@ export const Posts: CollectionConfig = {
     group: 'Content',
   },
   access: {
-    read: () => true, // Make posts publicly readable
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
   },
   versions: {
     drafts: true,
